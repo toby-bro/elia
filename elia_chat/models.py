@@ -4,10 +4,9 @@ from dataclasses import dataclass
 from datetime import UTC, datetime
 from typing import TYPE_CHECKING
 
-
-from elia_chat.config import LaunchConfig, EliaChatModel
-
 from textual._context import active_app
+
+from elia_chat.config import EliaChatModel, LaunchConfig
 
 if TYPE_CHECKING:
     from litellm.types.completion import ChatCompletionMessageParam
@@ -85,4 +84,5 @@ class ChatData:
     @property
     def update_time(self) -> datetime:
         message_timestamp = self.messages[-1].timestamp
+        assert message_timestamp is not None
         return message_timestamp.astimezone().replace(tzinfo=UTC)

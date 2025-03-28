@@ -10,8 +10,8 @@ from textual.reactive import Reactive, reactive
 from textual.signal import Signal
 
 from elia_chat.chats_manager import ChatsManager
-from elia_chat.models import ChatData, ChatMessage
 from elia_chat.config import EliaChatModel, LaunchConfig
+from elia_chat.models import ChatData, ChatMessage
 from elia_chat.runtime_config import RuntimeConfig
 from elia_chat.screens.chat_screen import ChatScreen
 from elia_chat.screens.help_screen import HelpScreen
@@ -20,8 +20,8 @@ from elia_chat.themes import BUILTIN_THEMES, Theme, load_user_themes
 
 if TYPE_CHECKING:
     from litellm.types.completion import (
-        ChatCompletionUserMessageParam,
         ChatCompletionSystemMessageParam,
+        ChatCompletionUserMessageParam,
     )
 
 

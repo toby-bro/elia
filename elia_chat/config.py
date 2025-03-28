@@ -1,4 +1,5 @@
 import os
+
 from pydantic import AnyHttpUrl, BaseModel, ConfigDict, Field, SecretStr
 
 
@@ -93,9 +94,7 @@ def get_builtin_anthropic_models() -> list[EliaChatModel]:
             display_name="Claude 3 Haiku",
             provider="Anthropic",
             product="Claude 3",
-            description=(
-                "Fastest and most compact model for near-instant responsiveness"
-            ),
+            description=("Fastest and most compact model for near-instant responsiveness"),
         ),
         EliaChatModel(
             id="elia-claude-3-sonnet-20240229",
@@ -103,9 +102,7 @@ def get_builtin_anthropic_models() -> list[EliaChatModel]:
             display_name="Claude 3 Sonnet",
             provider="Anthropic",
             product="Claude 3",
-            description=(
-                "Ideal balance of intelligence and speed for enterprise workloads"
-            ),
+            description=("Ideal balance of intelligence and speed for enterprise workloads"),
         ),
         EliaChatModel(
             id="elia-claude-3-opus-20240229",
@@ -140,11 +137,65 @@ def get_builtin_google_models() -> list[EliaChatModel]:
     ]
 
 
+def get_builtin_mistral_models() -> list[EliaChatModel]:
+    return [
+        EliaChatModel(
+            id="elia-mistral/mistral-small",
+            name="mistral/mistral-small-latest",
+            display_name="Mistral small",
+            provider="Mistral",
+            product="Mistral",
+            description="A new leader in the small models category with image understanding capabilities",
+        ),
+        EliaChatModel(
+            id="elia-mistral/mistral-large",
+            name="mistral/mistral-large-latest",
+            display_name="Mistral Large",
+            provider="Mistral",
+            product="Mistral",
+            description="Our top-tier reasoning model for high-complexity tasks",
+        ),
+        EliaChatModel(
+            id="elia-mistral/mistral-nemo",
+            name="mistral/open-mistral-nemo",
+            display_name="Mistral nemo",
+            provider="Mistral",
+            product="Mistral",
+            description="multilingual open source model",
+        ),
+        EliaChatModel(
+            id="elia-mistral/ministral-3b",
+            name="mistral/ministral-3b-latest",
+            display_name="Ministral 3B",
+            provider="Mistral",
+            product="Mistral",
+            description="World's best edge model.",
+        ),
+        EliaChatModel(
+            id="elia-mistral/ministral-8b",
+            name="mistral/ministral-8b-latest",
+            display_name="Ministral 8B",
+            provider='Mistral',
+            product="Mistral",
+            description="Powerful edge model with extremely high performance/price ratio.",
+        ),
+        EliaChatModel(
+            id="elia-mistral/codestral-latest",
+            name="mistral/codestral-latest",
+            display_name="Codestral",
+            provider="Codestral",
+            product="Codestral",
+            description="language model for coding",
+        ),
+    ]
+
+
 def get_builtin_models() -> list[EliaChatModel]:
     return (
         get_builtin_openai_models()
         + get_builtin_anthropic_models()
         + get_builtin_google_models()
+        + get_builtin_mistral_models()
     )
 
 
@@ -158,17 +209,11 @@ class LaunchConfig(BaseModel):
 
     default_model: str = Field(default="elia-gpt-4o")
     """The ID or name of the default model."""
-    system_prompt: str = Field(
-        default=os.getenv(
-            "ELIA_SYSTEM_PROMPT", "You are a helpful assistant named Elia."
-        )
-    )
+    system_prompt: str = Field(default=os.getenv("ELIA_SYSTEM_PROMPT", "You are a helpful assistant named Elia."))
     message_code_theme: str = Field(default="monokai")
     """The default Pygments syntax highlighting theme to be used in chatboxes."""
     models: list[EliaChatModel] = Field(default_factory=list)
-    builtin_models: list[EliaChatModel] = Field(
-        default_factory=get_builtin_models, init=False
-    )
+    builtin_models: list[EliaChatModel] = Field(default_factory=get_builtin_models, init=False)
     theme: str = Field(default="nebula")
 
     @property
