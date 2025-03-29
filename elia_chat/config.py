@@ -183,8 +183,8 @@ def get_builtin_mistral_models() -> list[EliaChatModel]:
             id="elia-mistral/codestral-latest",
             name="mistral/codestral-latest",
             display_name="Codestral",
-            provider="Codestral",
-            product="Codestral",
+            provider="Mistral",
+            product="Mistral",
             description="language model for coding",
         ),
     ]

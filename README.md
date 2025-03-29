@@ -22,6 +22,25 @@ Install Elia with [pipx](https://github.com/pypa/pipx):
 pipx install --python 3.11 elia-chat
 ```
 
+Run Elia with [`uv`](https://docs.astral.sh/uv/) (without installing it):
+
+```bash
+uvx --from elia-chat -p 3.11 elia
+```
+
+To install it with [`uv`](https://docs.astral.sh/uv/), run:
+
+```bash
+uv tool install -p 3.11 elia-chat
+```
+
+Lastly, to install it with [`uv`](https://docs.astral.sh/uv/) from local source, run:
+
+```bash
+cd elia  # wherever you cloned the repo
+uv tool install --editable . -p 3.11
+```
+
 Depending on the model you wish to use, you may need to set one or more environment variables (e.g. `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `GEMINI_API_KEY` etc).
 
 ## Quickstart
@@ -124,15 +143,15 @@ You can find the themes directory location by pressing `ctrl+o` on the home scre
 Here's an example of a theme YAML file:
 
 ```yaml
-name: example  # use this name in your config file
-primary: '#4e78c4'
-secondary: '#f39c12'
-accent: '#e74c3c'
-background: '#0e1726'
-surface: '#17202a'
-error: '#e74c3c'  # error messages
-success: '#2ecc71'  # success messages
-warning: '#f1c40f'  # warning messages
+name: example # use this name in your config file
+primary: "#4e78c4"
+secondary: "#f39c12"
+accent: "#e74c3c"
+background: "#0e1726"
+surface: "#17202a"
+error: "#e74c3c" # error messages
+success: "#2ecc71" # success messages
+warning: "#f1c40f" # warning messages
 ```
 
 ## Changing keybindings
